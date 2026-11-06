@@ -57,3 +57,10 @@ export function getCampaign(id: string): Campaign | undefined {
 export function getCampaigns(): Campaign[] {
   return simulatedCampaigns.map(withCampaignMetrics)
 }
+
+export function calculateOverallCtr(campaigns: Pick<Campaign, 'impressions' | 'clicks'>[]): number {
+  const totalImpressions = campaigns.reduce((total, campaign) => total + campaign.impressions, 0)
+  const totalClicks = campaigns.reduce((total, campaign) => total + campaign.clicks, 0)
+
+  return totalImpressions === 0 ? 0 : (totalClicks / totalImpressions) * 100
+}

@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from 'react'
 import useSWR from 'swr'
 import { Activity, BadgeCheck, Braces, CircleDollarSign, MousePointer2, Radio, RefreshCw, Send, Sparkles, Target, type LucideIcon } from 'lucide-react'
-import type { Campaign } from '@/lib/campaigns'
+import { calculateOverallCtr, type Campaign } from '@/lib/campaigns'
 
 type EndpointOption = {
   label: string
@@ -232,7 +232,7 @@ export function CampaignDashboard() {
   const totalImpressions = campaigns?.reduce((sum, campaign) => sum + campaign.impressions, 0) ?? 0
   const totalClicks = campaigns?.reduce((sum, campaign) => sum + campaign.clicks, 0) ?? 0
   const totalSpend = campaigns?.reduce((sum, campaign) => sum + campaign.spend, 0) ?? 0
-  const overallCtr = totalImpressions === 0 ? 0 : (totalClicks / totalImpressions) * 100
+  const overallCtr = calculateOverallCtr(campaigns ?? [])
 
   return (
     <main className="min-h-screen bg-[#f6f8fc] text-slate-900">
