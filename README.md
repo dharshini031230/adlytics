@@ -133,4 +133,6 @@ pnpm build
 2. In Vercel, choose **Add New → Project** and select the repository.
 3. Keep the detected Next.js framework settings and deploy. No environment variables are required.
 
-Vercel builds the Next.js app and deploys the Route Handler API endpoints along with the dashboard.
+## Author
+
+Created and maintained by @dharshini031230
